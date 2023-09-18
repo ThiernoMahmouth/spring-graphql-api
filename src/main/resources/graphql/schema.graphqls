@@ -1,0 +1,49 @@
+type Query
+{
+    productList : [Product]
+    productById(id : Float) : Product
+    categoryList : [Category]
+    categoryById(id : Float) : Category
+}
+
+type Mutation
+{
+    saveProduct(productRequestDTO: ProductRequest) : Product
+    updateProduct(productRequestDTO: ProductRequest) : Product
+    deleteProduct(id: Float) : Boolean
+
+    saveCategory(categoryRequestDTO: CategoryRequest) : Category
+    updateCategory(categoryRequestDTO: CategoryRequest) : Category
+    deleteCategory(id: Float) : Boolean
+}
+
+type Product
+{
+    id : Float,
+    name : String,
+    price : Float,
+    quantity : Int
+    category: Category
+}
+
+type Category
+{
+    id: Float
+    name: String
+    products: [Product]
+}
+
+input ProductRequest
+{
+    id : Float,
+    name : String,
+    price : Float,
+    quantity : Int
+    categoryId : Float
+}
+
+input CategoryRequest
+{
+    id: Float
+    name: String
+}
